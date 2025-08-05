@@ -4,9 +4,23 @@ import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'Vibe',
+  description: 'Shopping assistant for online products',
+  icons: {
+    icon: [
+      {
+        url: '/icons/VIBE_LOGO.png',
+        sizes: 'any'
+      }
+    ],
+    apple: [
+      {
+        url: '/icons/VIBE_LOGO.png',
+        sizes: '180x180',
+        type: 'image/png',
+      }
+    ],
+  }
 }
 
 export default function RootLayout({
