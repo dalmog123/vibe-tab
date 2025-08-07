@@ -14,8 +14,8 @@ export default function WaitlistForm() {
 
         try {
             await addDoc(collection(db, 'waitlist'), {
-                name,
-                email,
+                name: name.trim(),
+                email: email.trim(),
                 createdAt: serverTimestamp(),
             });
 
@@ -48,6 +48,7 @@ export default function WaitlistForm() {
                 placeholder="Your Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                maxLength={50}
                 className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
                 required
             />
@@ -56,6 +57,7 @@ export default function WaitlistForm() {
                 placeholder="Your Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                maxLength={100}
                 className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"
                 required
             />
