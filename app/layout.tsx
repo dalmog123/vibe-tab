@@ -39,6 +39,7 @@ html {
 }
         `}</style>
       </head>
+      <meta name="google-site-verification" content="JhgQl52H137r_OstXxzABhUt13uRGhw-PnnMJtI4Uc0" />
       <body>{children}</body>
     </html>
   )
