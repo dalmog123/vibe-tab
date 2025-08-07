@@ -83,25 +83,20 @@ export default function VibeLanding() {
                 <Chrome className="w-5 h-5 mr-2" />
                 Add to Chrome - Free
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-sky-200 text-sky-700 hover:bg-sky-50 px-8 py-4 text-lg bg-transparent"
-              >
-                <Download className="w-5 h-5 mr-2" />
-                Watch Demo
-              </Button>
+
             </div>
             <p className="text-sm text-gray-500 mt-4">Coming Soon • Join the Waitlist • Free During Beta</p>
           </div>
 
-          {/* Hero Image */}
+          {/* Hero Video */}
           <div className="relative max-w-5xl mx-auto">
-            <div className="bg-white rounded-2xl shadow-2xl border border-sky-200/50 overflow-hidden">
-              <img
-                src="/placeholder.svg?height=600&width=1000"
-                alt="Vibe Chrome Extension Interface"
-                className="w-full h-auto"
+            <div className="bg-white rounded-2xl shadow-2xl border border-sky-200/50 overflow-hidden aspect-video">
+              <iframe
+                src="https://www.youtube.com/embed/bhPvHOEmtZs"
+                title="Vibe Chrome Extension Demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
               />
             </div>
           </div>
@@ -341,16 +336,9 @@ export default function VibeLanding() {
             <Button size="lg" className="bg-white text-sky-600 hover:bg-gray-100 px-8 py-4 text-lg">
               Join Waitlist
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg bg-transparent"
-            >
-              Learn More
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
+
           </div>
-          <p className="text-sky-100 mt-6 text-sm">Early access • Free beta testing • Limited spots available</p>
+          <p className="text-sky-100 mt-6 text-sm">Early access • Free beta testing </p>
         </div>
       </section>
 
