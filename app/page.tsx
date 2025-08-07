@@ -1,3 +1,4 @@
+'use client';
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -13,6 +14,24 @@ import {
   ArrowRight,
   Download,
 } from "lucide-react"
+import { use } from "react"
+import WaitlistForm from "@/components/waitlistForm";
+
+const waitlistScroll = () => {
+  document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" });
+}
+
+const howItWorksScroll = () => {
+  document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
+}
+
+const featuresScroll = () => {
+  document.getElementById("features")?.scrollIntoView({ behavior: "smooth" });
+}
+
+const reviewsScroll = () => {
+  document.getElementById("reviews")?.scrollIntoView({ behavior: "smooth" });
+}
 
 export default function VibeLanding() {
   return (
@@ -34,25 +53,34 @@ export default function VibeLanding() {
 
             {/* Mobile Chrome button */}
             <div className="flex md:hidden relative">
-              <Button className="bg-sky-500 hover:bg-sky-600 text-white">
-                <Chrome className="w-4 h-4" />
+              <Button onClick={() => {
+                waitlistScroll();
+              }} className="bg-sky-500 hover:bg-sky-600 text-white border border-sky-600 text-sm px-3">
+                Join
               </Button>
             </div>
 
             {/* Desktop navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-gray-600 hover:text-sky-600 transition-colors">
+              <a onClick={() => {
+                featuresScroll();
+              }} className="text-gray-600 hover:text-sky-600 transition-colors cursor-pointer">
                 Features
               </a>
-              <a href="#how-it-works" className="text-gray-600 hover:text-sky-600 transition-colors">
+              <a onClick={() => {
+                howItWorksScroll();
+              }} className="text-gray-600 hover:text-sky-600 transition-colors cursor-pointer">
                 How it Works
               </a>
-              <a href="#testimonials" className="text-gray-600 hover:text-sky-600 transition-colors">
+              <a onClick={() => {
+                reviewsScroll();
+              }} className="text-gray-600 hover:text-sky-600 transition-colors cursor-pointer">
                 Reviews
               </a>
-              <Button className="bg-sky-500 hover:bg-sky-600 text-white">
-                <Chrome className="w-4 h-4 mr-2" />
-                Add to Chrome
+              <Button onClick={() => {
+                waitlistScroll();
+              }} className="bg-sky-500 hover:bg-sky-600 text-white">
+                Join Waitlist
               </Button>
             </div>
           </div>
@@ -79,9 +107,10 @@ export default function VibeLanding() {
               checklists with AI-powered insights that help you shop smarter.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 text-lg">
-                <Chrome className="w-5 h-5 mr-2" />
-                Add to Chrome - Free
+              <Button onClick={() => {
+                waitlistScroll();
+              }} size="lg" className="bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 text-lg">
+                Join Our Waitlist
               </Button>
 
             </div>
@@ -253,7 +282,7 @@ export default function VibeLanding() {
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
+      <section id="reviews" className="py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -326,21 +355,27 @@ export default function VibeLanding() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sky-500 to-blue-600">
+      <section
+        id="waitlist"
+        className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-sky-500 to-blue-600"
+      >
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Be the first to experience Vibe</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Be the first to experience Vibe
+          </h2>
           <p className="text-xl text-sky-100 mb-8 max-w-2xl mx-auto">
             Join our waitlist to get early access and help shape the future of AI-powered shopping assistance.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="bg-white text-sky-600 hover:bg-gray-100 px-8 py-4 text-lg">
-              Join Waitlist
-            </Button>
 
-          </div>
-          <p className="text-sky-100 mt-6 text-sm">Early access • Free beta testing </p>
+          {/* Waitlist Form */}
+          <WaitlistForm></WaitlistForm>
+
+          <p className="text-sky-100 mt-6 text-sm">
+            Early access • Free beta testing
+          </p>
         </div>
       </section>
+
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
@@ -353,19 +388,22 @@ export default function VibeLanding() {
               <span className="text-xl font-bold">Vibe</span>
             </div>
             <div className="flex space-x-6 text-sm text-gray-400">
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="https://www.freeprivacypolicy.com/live/dc3b54bd-6d7c-42d8-aeca-c1f5fd69a8d2" target="_blank"
+                rel="noopener noreferrer" className="hover:text-white transition-colors">
                 Privacy Policy
               </a>
-              <a href="#" className="hover:text-white transition-colors">
-                Terms of Service
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScyKn7UPNzpZgRyAXdosMcz_dluAua0N1k4dvNv86I3NHKNBw/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
                 Support
               </a>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-            <p>&copy; 2024 Vibe. All rights reserved. Currently in development.</p>
+            <p>&copy; 2025 Vibe. All rights reserved. Currently in development.</p>
           </div>
         </div>
       </footer>
