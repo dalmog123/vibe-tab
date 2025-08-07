@@ -2,8 +2,15 @@
 
 import { useState } from 'react';
 import Swal from 'sweetalert2';
-import { db } from '../lib/firebase'; // adjust the path if needed
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../lib/firebase';
+import {
+    collection,
+    addDoc,
+    serverTimestamp,
+    query,
+    where,
+    getDocs
+} from 'firebase/firestore';
 
 export default function WaitlistForm() {
     const [email, setEmail] = useState('');
@@ -13,9 +20,24 @@ export default function WaitlistForm() {
         e.preventDefault();
 
         try {
-            await addDoc(collection(db, 'waitlist'), {
+            const waitlistRef = collection(db, 'waitlist');
+            const q = query(waitlistRef, where('email', '==', email.trim().toLowerCase()));
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                Swal.fire({
+                    title: 'Already Signed Up!',
+                    text: 'Dont worry, we will update you as soon as Vibe go online.',
+                    icon: 'info',
+                    confirmButtonText: 'Okay',
+                    confirmButtonColor: '#0ea5e9',
+                });
+                return;
+            }
+
+            await addDoc(waitlistRef, {
                 name: name.trim(),
-                email: email.trim(),
+                email: email.trim().toLowerCase(),
                 createdAt: serverTimestamp(),
             });
 
@@ -36,13 +58,16 @@ export default function WaitlistForm() {
                 text: 'Something went wrong. Please try again later.',
                 icon: 'error',
                 confirmButtonText: 'Okay',
-                confirmButtonColor: '#ef4444', // red-500
+                confirmButtonColor: '#ef4444',
             });
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full max-w-xl mx-auto mt-8 bg-white p-6 rounded-xl shadow-lg space-y-4">
+        <form
+            onSubmit={handleSubmit}
+            className="w-full max-w-xl mx-auto mt-8 bg-white p-6 rounded-xl shadow-lg space-y-4"
+        >
             <input
                 type="text"
                 placeholder="Your Name"
